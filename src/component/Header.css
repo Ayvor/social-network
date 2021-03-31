@@ -1,0 +1,9 @@
+.app-header {
+    grid-area: header;
+    background-color: aqua;
+  }
+  
+  .app-header img {
+    height: 60px;
+    width: 60px;
+  }
