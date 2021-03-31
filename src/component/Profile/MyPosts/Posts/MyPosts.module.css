@@ -1,8 +1,12 @@
-.app_content {
+/* .app_content {
     grid-area: main; 
     background-color: chartreuse;
   }
   
   .app_content img {
     width: 100%;
+  }
+ */
+  .item {
+    color: green;
   }
