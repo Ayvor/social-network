@@ -13,19 +13,8 @@
 
 }
 
-.app-nav {
-  grid-area: nav;
-  background-color: blue;
-}
 
-.app-content {
-  grid-area: main; 
-  background-color: chartreuse;
-}
 
-.app-content img {
-  width: 100%;
-}
 
 
 

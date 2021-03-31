@@ -1,0 +1,8 @@
+.app-content {
+    grid-area: main; 
+    background-color: chartreuse;
+  }
+  
+  .app-content img {
+    width: 100%;
+  }
