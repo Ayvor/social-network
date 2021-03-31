@@ -4,19 +4,19 @@ const Navbar = () => {
     return (
         <nav className="app-nav">
             <div className="item">
-                <a>Profile</a>
+                <a href="www.google.com">Profile</a>
             </div>
             <div className="item">
-                <a>Messages</a>
+                <a href="www.google.com">Messages</a>
             </div>
             <div className="item">
-                <a>News</a>
+                <a href="www.google.com">News</a>
             </div>
             <div className="item">
-                <a>Music</a>
+                <a href="www.google.com">Music</a>
             </div>
             <div className="item">
-                <a>Settings</a>
+                <a href="www.google.com">Settings</a>
             </div>
         </nav>
     );
