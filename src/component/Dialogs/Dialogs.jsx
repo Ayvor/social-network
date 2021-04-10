@@ -3,20 +3,29 @@ import Avatar from './Avatar/Avatar';
 import style from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../Redux/state'
 
 
 const Dialogs = (props) => {
-    let hookMessage = React.createRef();
-    debugger;
-    let sendMessage = () => {
 
-        let textMessage = hookMessage.current.value;
-        props.state.messages.push(textMessage);
+    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} src={d.avatar} name={d.name} />);
+    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} />);
+    // let avatarsElements = props.state.avatars.map(a => <Avatar src={a.avatar} />)
+
+    let newMessage = React.createRef();
+
+    let addMessage = () => {
+        let action = addMessageActionCreator();
+        props.dispatch(action);
     }
 
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem id={d.id} src={d.avatar} name={d.name} />);
-    let messagesElements = props.state.messages.map(m => <Message message={m.message} />);
-    // let avatarsElements = props.state.avatars.map(a => <Avatar src={a.avatar} />)
+    let onMessageChange = () => {
+        let text = newMessage.current.value;
+        let action = updateNewMessageTextActionCreator(text);
+        props.dispatch(action);
+    }
+
+
 
     return (
         <div className={style.dialogs}>
@@ -32,9 +41,9 @@ const Dialogs = (props) => {
                 {messagesElements}
             </div>
             <div>
-                <textarea ref={hookMessage}></textarea>
+                <textarea onChange={onMessageChange} value={props.newMessageText} ref={newMessage}></textarea>
                 <div>
-                    <button onClick={sendMessage}>Send</button>
+                    <button onClick={addMessage}>Send</button>
                 </div>
             </div>
         </div>
