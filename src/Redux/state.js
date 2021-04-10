@@ -1,8 +1,8 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const SEND_MESSAGE = 'SEND_MESSAGE'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 
 let store = {
     _state: {
@@ -31,7 +31,7 @@ let store = {
                 { id: 3, message: 'Yo' },
                 { id: 4, message: 'Yo' },
             ],
-            newMessageText: 'test',
+            newMessageBody: 'test',
         },
 
         sideBar: {
@@ -73,21 +73,21 @@ let store = {
         this._callSubscriber(this._state);
     },
 
-    addMessage() {
-        let newMessage = {
-            id: this._state.dialogsPage.messages.length,
-            message: this._state.dialogsPage.newMessageText,
-        }
+    // addMessage() {
+    //     let newMessage = {
+    //         id: this._state.dialogsPage.messages.length,
+    //         message: this._state.dialogsPage.newMessageBody,
+    //     }
 
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.messages.newMessageText = '';
-        this._callSubscriber(this._state);
-    },
+    //     this._state.dialogsPage.messages.push(newMessage);
+    //     this._state.dialogsPage.messages.newMessageBody = '';
+    //     this._callSubscriber(this._state);
+    // },
 
-    updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessageText = newText;
-        this._callSubscriber(this._state);
-    },
+    // updateNewMessageBody(body) {
+    //     this._state.dialogsPage.newMessageBody = body;
+    //     this._callSubscriber(this._state);
+    // },
 
     dispatch(action) {
         if (action.type === ADD_POST) {
@@ -96,11 +96,23 @@ let store = {
         else if (action.type === UPDATE_NEW_POST_TEXT) {
             this.updateNewPostText(action.newText);
         }
-        else if (action.type === ADD_MESSAGE) {
-            this.addMessage();
+        else if (action.type === SEND_MESSAGE) {
+            // this.addMessage();
+            let body = this._state.dialogsPage.newMessageBody;
+            this._state.dialogsPage.newMessageBody = '';
+
+            let newMessage = {
+                id: this._state.dialogsPage.messages.length,
+                message: body,
+            };
+
+            this._state.dialogsPage.messages.push(newMessage);
+            this._callSubscriber(this._state);
         }
-        else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this.updateNewMessageText(action.newText);
+        else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            //this.updateNewMessageBody(action.body);
+            this._state.dialogsPage.newMessageBody = action.body;
+            this._callSubscriber(this._state);
         }
     },
 
@@ -134,13 +146,13 @@ export const updateNewPostTextActionCreator = (text) => ({
     newText: text,
 });
 
-export const addMessageActionCreator = () => ({
-    type: ADD_MESSAGE,
+export const sendMessageCreator = () => ({
+    type: SEND_MESSAGE,
 });
 
-export const updateNewMessageTextActionCreator = (text) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newText: text,
+export const updateNewMessageBodyCreator = (body) => ({
+    type: UPDATE_NEW_MESSAGE_BODY,
+    body: body,
 });
 
 window.state = store;
