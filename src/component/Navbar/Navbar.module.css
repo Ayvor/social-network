@@ -16,3 +16,8 @@
 .item a:focus {
     color: yellow;
 }
+
+.friendsBlock {
+    background-color: ghostwhite;
+    text-align: center;
+}
