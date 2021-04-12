@@ -4,8 +4,8 @@ import style from './Navbar.module.css';
 
 const Navbar = (props) => {
 
-    let friendElements = props.state.friends
-        .map(f => <Friends src={f.avatar} name={f.name} />)
+    // let friendElements = props.state.friends
+    //     .map(f => <Friends src={f.avatar} name={f.name} />)
 
     return (
         <div className={style.app_nav}>
@@ -28,7 +28,7 @@ const Navbar = (props) => {
             </nav>
             <div className={style.friendsBlock}>
                 <h2>Friends</h2>
-                {friendElements}
+                {/* {friendElements} */}
             </div>
         </div>
     );

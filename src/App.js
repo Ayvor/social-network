@@ -7,21 +7,21 @@ import Dialogs from './component/Dialogs/Dialogs';
 import News from './component/News/News';
 import Music from './component/Music/Music';
 import Settings from './component/Settings/Settings';
+import DialogsContainer from './component/Dialogs/DialogsContainer';
 
 
 const App = (props) => {
   return (
     <div className='app-wrapper'>
       <Header />
-      <Navbar state={props.state.sideBar} />
+      {/* <Navbar state={props.state.sideBar} /> */}
+      <Navbar />
       <div className='app-wrapper-content'>
         <Route path="/profile"
-          render={() => <Profile
-            profilePage={props.state.profilePage}
-            dispatch={props.dispatch} />} />
+          render={() => <Profile />} />
 
         <Route path="/dialogs"
-          render={() => <Dialogs store={props.store} />} />
+          render={() => <DialogsContainer />} />
 
         <Route path="/news" component={News} />
         <Route path="/music" component={Music} />
