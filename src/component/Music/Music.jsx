@@ -2,7 +2,7 @@ import style from './Music.module.css';
 
 const Music = () => {
     return (
-        <div>
+        <div className={style}>
             Music
         </div>
     );
