@@ -18,7 +18,6 @@ class Users extends React.Component {
     render() {
         return (
             <div>
-                {/* <button onClick={this.getUsers}>Get Users</button> */}
                 {this.props.users.map((u) => (
                     <div key={u.id} className={styles.itemBlock}>
                         <span>
