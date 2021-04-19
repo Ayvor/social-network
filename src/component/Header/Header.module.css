@@ -1,9 +1,19 @@
-.app_header {
-    grid-area: header;
-    background-color: #20232a;
-  }
-  
-.app_header img {
-    height: 60px;
-    width: 60px;
-  }
+.header {
+  grid-area: header;
+  background-color: #20232a;
+}
+
+.header img {
+  height: 60px;
+  width: 60px;
+}
+
+.loginBlock {
+  color: white;
+  float: right;
+}
+
+.loginBlock a {
+  color: white;
+  text-decoration: none;
+}
