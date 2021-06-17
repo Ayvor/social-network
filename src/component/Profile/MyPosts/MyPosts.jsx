@@ -7,36 +7,52 @@ import Post from './Post/Post';
 
 const maxLength10 = maxLengthCreator(10);
 
-const MyPosts = (props) => {
-  let postsElements = props.posts.map((p) => (
-    <Post key={p.id} message={p.message} likesCount={p.likesCount} />
-  ));
+class MyPosts extends React.Component {
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps !== this.props || nextState !== this.state;
+  // }
+  render() {
+    let postsElements = this.props.posts.map((p) => (
+      <Post key={p.id} message={p.message} likesCount={p.likesCount} />
+    ));
 
-  let onAddPost = (values) => {
-    props.addPost(values.newPostText);
-  };
+    let onAddPost = (values) => {
+      this.props.addPost(values.newPostText);
+    };
 
-  return (
-    <div className={style.postsBlock}>
-      My Post
-      <div>New Post</div>
-      <div>
-        {/* <div>
-                    <textarea
-                        onChange={onPostChange}
-                        ref={newPostElement}
-                        value={props.newPostText}
-                    />
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Add Post</button>
-                </div> */}
-        <AddNewPostReduxForm onSubmit={onAddPost} />
+    return (
+      <div className={style.postsBlock}>
+        My Post
+        <div>New Post</div>
+        <div>
+          <AddNewPostReduxForm onSubmit={onAddPost} />
+        </div>
+        <div className={style.posts}>{postsElements}</div>
       </div>
-      <div className={style.posts}>{postsElements}</div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+// const MyPostsFunc = React.memo((props) => {
+//   let postsElements = props.posts.map((p) => (
+//     <Post key={p.id} message={p.message} likesCount={p.likesCount} />
+//   ));
+
+//   let onAddPost = (values) => {
+//     props.addPost(values.newPostText);
+//   };
+
+//   return (
+//     <div className={style.postsBlock}>
+//       My Post
+//       <div>New Post</div>
+//       <div>
+//         <AddNewPostReduxForm onSubmit={onAddPost} />
+//       </div>
+//       <div className={style.posts}>{postsElements}</div>
+//     </div>
+//   );
+// });
 
 const AddNewPostForm = (props) => {
   return (

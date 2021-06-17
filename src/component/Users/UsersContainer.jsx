@@ -5,7 +5,7 @@ import {
   unfollow,
   setCurrentPage,
   toggleFollowingProgress,
-  requesUsers,
+  requestUsers,
 } from '../../Redux/users-reducer';
 import {
   getUsersSuperSelector,
@@ -22,12 +22,15 @@ import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.requesUsers(this.props.currentPage, this.props.pageSize);
-  }
+    const {currentPage, pageSize} = this.props;
+    this.props.getUsers(currentPage, pageSize);
+}
 
-  onPageChanged = (pageNumber) => {
-    this.props.requesUsers(pageNumber, this.props.pageSize);
-  };
+
+onPageChanged = (pageNumber) => {
+  const {pageSize} = this.props;
+  this.props.getUsers(pageNumber, pageSize);
+}
 
   render() {
     return (
@@ -48,16 +51,6 @@ class UsersContainer extends React.Component {
   }
 }
 
-// let mapStateToProps = (state) => {
-//   return {
-//     users: state.usersPage.users,
-//     pageSize: state.usersPage.pageSize,
-//     totalUsersCount: state.usersPage.totalUsersCount,
-//     currentPage: state.usersPage.currentPage,
-//     isFetching: state.usersPage.isFetching,
-//     followingInProgress: state.usersPage.followingInProgress,
-//   };
-// };
 let mapStateToProps = (state) => {
   return {
     users: getUsersSuperSelector(state),
@@ -76,6 +69,6 @@ export default compose(
     unfollow,
     setCurrentPage,
     toggleFollowingProgress,
-    getUsers: requesUsers,
+    getUsers: requestUsers,
   }),
 )(UsersContainer);
